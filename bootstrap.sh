@@ -16,8 +16,7 @@ apt-get -y install \
     ca-certificates \
     curl \
     software-properties-common \
-#    etcd \
-    docker.io \
+    docker-ce \
     kubelet kubeadm kubectl kubernetes-cni
 
 usermod -aG docker ${USER}

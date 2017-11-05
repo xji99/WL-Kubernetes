@@ -19,8 +19,7 @@ apt-get -y install \
     curl \
     software-properties-common \
     ansible \
-#    etcd \
-    docker.io \
+    docker-ce \
     kubelet kubeadm kubectl kubernetes-cni
 
 usermod -aG docker ${USER}

@@ -12,12 +12,15 @@
   register: kinitStat
 
 - name : kubunetes init
-  command: kubeadm init
+  command: kubeadm init  --apiserver-advertise-address 192.168.5.11
   when: kinitStat.stat.exists == False
   register: k8init_result
 
+- debug:
+        var: k8init_result.stdout_lines
+       
 - name: save k8init reuslt
-  local_action: copy content={{k8init_result}} dest=/vagrant/k8initResult.log
+  local_action: copy content="{{k8init_result}}" dest=/vagrant/k8initResult.log
   when: kinitStat.stat.exists == False
 
 - name : create .kube dir
@@ -55,3 +58,4 @@
 
 - name: setup user kubernets env
   shell: "mkdir -p /home/ubuntu/.kube && cp /etc/kubernetes/admin.conf /home/ubuntu/.kube/config && chown -R ubuntu:ubuntu /home/ubuntu/.kube"
+
