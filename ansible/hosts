@@ -1,0 +1,8 @@
+[controlboxes]
+k8master ansible_connection=local
+
+[k8nodes]
+k8node1
+
+[all:vars]
+ansible_python_interpreter="/usr/bin/python3"

@@ -9,6 +9,8 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 add-apt-repository "deb [arch=amd64] http://apt.kubernetes.io/ kubernetes-xenial main"
 
+apt-add-repository ppa:ansible/ansible
+
 apt-get update
 
 apt-get -y install \
@@ -16,6 +18,7 @@ apt-get -y install \
     ca-certificates \
     curl \
     software-properties-common \
+    ansible \
 #    etcd \
     docker.io \
     kubelet kubeadm kubectl kubernetes-cni

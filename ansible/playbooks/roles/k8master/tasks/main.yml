@@ -1,0 +1,21 @@
+---
+# tasks file for control
+
+- name : install prereq 
+  apt : name={{item}} state=present update_cache=yes
+  with_items:
+     - curl
+     - python-httplib2
+
+
+- name : create .kube dir
+  file: path={{ansible_env.HOME}}/.kube state=directory
+
+- name : copy config
+  command: cp /etc/kubernetes/admin.conf $HOME/.kube/config
+
+- name : chown config file
+  shell : "chown $(id -u):$(id -g) $HOME/.kube/config"
+
+- name : create k8 pod
+  command : kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml

@@ -1,0 +1,5 @@
+---
+- hosts : k8master 
+  become: true
+  roles: 
+    - k8master
