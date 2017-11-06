@@ -1,0 +1,10 @@
+---
+- hosts: k8master
+  become: true
+  tasks:
+    - name: check nodes status
+      command: kubectl get nodes
+      register: nodestatus
+
+    - debug:
+        var: nodestatus.stdout_lines

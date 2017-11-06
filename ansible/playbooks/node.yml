@@ -1,0 +1,5 @@
+---
+- hosts : k8nodes
+  become: true
+  roles: 
+    - k8node

@@ -1,0 +1,16 @@
+---
+# tasks file for k8node
+- name : install prereq 
+  apt : name={{item}} state=present update_cache=yes
+  with_items:
+     - curl
+     - python-httplib2
+
+
+- name : join nodes
+  command: kubeadm join --token 7d8f56.115e407688ffb245 192.168.5.10:6443 --discovery-token-ca-cert-hash sha256:6066f6890e15c8248fad0ef3b1796cf7e73bb52ad01a530ab9c9b5ccdec36a68
+  register: k8nodeJoin
+
+- debug:
+        var: k8nodeJoin.stdout_lines
+ 
