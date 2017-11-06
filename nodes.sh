@@ -2,6 +2,7 @@
 
 
 apt-get update
+apt-get upgrade -y
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add

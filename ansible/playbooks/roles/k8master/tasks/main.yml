@@ -12,7 +12,7 @@
   register: kinitStat
 
 - name : kubunetes init
-  command: kubeadm init  --apiserver-advertise-address 192.168.5.11
+  command: kubeadm init  --apiserver-advertise-address 192.168.5.10
   when: kinitStat.stat.exists == False
   register: k8init_result
 
