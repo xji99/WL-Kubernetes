@@ -29,7 +29,7 @@ Vagrant.configure(2) do |config|
   config.vm.define "k8node1" do |h|
     h.vm.hostname = "k8node1"
     h.vm.network "private_network", ip: "192.168.5.12"
-    h.vm.provision :shell, path: "bootstrap.sh"
+    h.vm.provision :shell, path: "nodes.sh"
 
     h.vm.provider :virtualbox do |vb|
          vb.customize ["modifyvm", :id, "--memory", "2048"]

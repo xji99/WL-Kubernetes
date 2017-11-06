@@ -26,3 +26,16 @@ usermod -aG docker ${USER}
 
 route del default
 route add default gw 172.16.2.1
+
+if [ ! -f "/home/ubuntu/.ssh/id_rsa" ]; then
+  mkdir -p  /home/ubuntu/.ssh
+  ssh-keygen -t rsa -N "" -f /home/ubuntu/.ssh/id_rsa
+fi
+cp /home/ubuntu/.ssh/id_rsa.pub /vagrant/control.pub
+cat /home/ubuntu/.ssh/id_rsa.pub >> /home/ubuntu/.ssh/authorized_keys
+cat << 'SSHEOF' > /home/ubuntu/.ssh/config
+Host *
+  StrictHostKeyChecking no
+  UserKnownHostsFile=/dev/null
+SSHEOF
+chown -R ubuntu:ubuntu /home/ubuntu/.ssh/
