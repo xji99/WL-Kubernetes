@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: comment out kubelete network conf
+      replace:
+        dest: /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+        regexp: '^Environment="KUBELET_NETWORK_ARGS'
+        replace: '#Environment="KUBELET_NETWORK_ARGS'
+
+    - name: restart kubelet service, in all cases, also issue daemon-reload to pick up config changes
+      systemd:
+        state: restarted
+        daemon_reload: yes
+        name: kubelet.service
+
+#    - name: reload dameon
+#      command: systemctl daemon-reload
+
+#    - name: restart kubelet
+#      command: systemctl restart kubelet.service 
+
