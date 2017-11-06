@@ -2,6 +2,13 @@
 - hosts: k8master
   become: true
   tasks:
+    - name: check pod status
+      command: kubectl get pods --all-namespaces
+      register: podStat
+
+    - debug:
+        var: podStat.stdout_lines
+
     - name: check nodes status
       command: kubectl get nodes
       register: nodestatus
