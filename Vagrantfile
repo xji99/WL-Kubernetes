@@ -17,7 +17,7 @@ Vagrant.configure(2) do |config|
   config.vm.define "k8master", primary: true do |h|
     h.vm.hostname = "k8master"
     h.vm.network "private_network", ip: "192.168.5.11"
-    h.vm.network "public_network", ip: "172.16.0.11"
+    h.vm.network "public_network", ip: "172.16.2.11", bridge: "enp6s0f2"
     h.vm.provision :shell, path: "master.sh"
 
     h.vm.provider :virtualbox do |vb|

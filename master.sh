@@ -24,3 +24,5 @@ apt-get -y install \
 
 usermod -aG docker ${USER}
 
+route del default
+route add default gw 172.16.2.1
