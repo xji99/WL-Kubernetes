@@ -3,9 +3,6 @@ k8master ansible_connection=local
 
 [k8nodes]
 k8node1
-k8node2
-k8node3
-k8node4
 
 [all:vars]
 ansible_python_interpreter="/usr/bin/python3"
